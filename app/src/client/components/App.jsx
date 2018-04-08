@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import NmapScanner from './NmapScanner.jsx'
+import Tgtest from './Tgtest.jsx'
+
+import NavBar from './NavBar.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -8,19 +11,16 @@ class App extends React.Component {
     this.state = {list: []};
   }
   componentDidMount() {
-    fetch('/tgtest/').
+    /* fetch('/tgtest/').
     then(response => response.json()).
-    then(data => this.setState({list: data}));
+    then(data => this.setState({list: data}));*/
   }
 
   render() {
-    const items = this.state.list.map((item) => (
-      <div key={item.name}>
-      <h1> {item.name} </h1>
-      </div>
-    ));
     return (
+      <div>
       <NmapScanner/>
+      </div>
 
     )
   }

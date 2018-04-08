@@ -3,8 +3,14 @@ services:
   web:
     build: .
     ports:
-      - "3000:3000"
+      - "11000:11000/udp"
+      - "3000:3000/tcp"
+      - "8080:8080/tcp"
     volumes:
       - ./app:/app
-    command: >
-     bash -c " npm run webpack & npm start"
+    network_mode: "host"
+    extra_hosts:
+      - "dockerhost:192.168.0.143"
+    command: bash run_dev.sh
+    #command: >
+    # bash -c " npm run production && npm start"

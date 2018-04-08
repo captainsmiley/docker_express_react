@@ -1,0 +1,46 @@
+.NmapScanner {
+  background-color: LightGray;
+  border: solid;
+  //width: 300px;
+  position: relative;
+
+  h1 {
+    color:green;
+    margin: auto;
+  }
+  label {
+    background-color: white;
+    margin: auto;
+  }
+
+.TextInput {
+  //  position: relative;
+  //  max-width: 26em;
+   // height: 2.5em;
+  //  background: white;
+    label {
+      padding: 0px;
+      margin: 0px;
+   //   position: absolute;
+    //  top: 0.75em;
+    //  left: 0.75em;
+      text-align: left;
+    }
+
+    input {
+      padding: 0.5em;
+      border-radius: 0.5em;
+    background-color: white;
+    margin: auto;
+  //  position: absolute;
+   // right: 0.25em;
+  //  top: 0.25em;
+   // min-width: 10em;
+  }
+}
+
+
+
+
+
+}

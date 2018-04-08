@@ -1,6 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var nmap = require('node-nmap');
+var UdpServer = require('../models/UDP.js');
+var Udp = new UdpServer();
+var NetworkUtils = require('../utils/NetworkUtils.js');
+var NetUtils = new NetworkUtils();
+
 nmap.nmapLocation = "nmap"; //default
 
 
@@ -18,12 +23,28 @@ function sendEventMsg(msg)
 /* GET home page. */
 router.get('/', function(req, res) {
   res.json([
-    {name: 'tgtest1', id: 1},
+    {name: 'tgtest1', id: 4},
     {name: 'tgtest2', id: 2},
     {name: 'tgtest3', id: 3}
 
   ]);
 });
+
+router.get('/test/', function(req,res) {
+  Udp.start();
+  console.log(' ');
+
+  res.json("start");
+
+})
+router.get('/test2/', function(req,res) {
+  //Udp.send_tgtest();
+  //console.log(' ');
+  NetUtils.print_ifs();
+
+  res.json("send");
+
+})
 
 
 

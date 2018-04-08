@@ -3,6 +3,10 @@ import React from 'react';
 
 import ScanResult from './ScanResult.jsx';
 
+import './../scss/nmap_scanner.scss';
+
+import {Row,Col,Container} from 'react-grid-system';
+
 
 class NmapScanner extends React.Component {
   constructor(props) {
@@ -62,16 +66,7 @@ class NmapScanner extends React.Component {
 
       const source = this.source;
       source.onmessage = this.handleServerEventMsg;
-/*
-      source.addEventListener('message', e => {
-        var v = JSON.parse(e.data);
 
-
-        this.setState({
-          nmap_state : v
-        })
-
-      }, false) */
 
       source.addEventListener('open', function(e) {
         console.log("Connected");
@@ -92,19 +87,27 @@ class NmapScanner extends React.Component {
   }
 
   render() {
+    const divStyle = {
+      background: 'LightGray',
+      margin: 'auto',
+      padding: '2px'
+    };
+    const formStyle = {
+      margin: '0px'
+    }
+
+    const containerStyle = {
+
+    }
+
     return (
-      <div>
-      <form onSubmit={this.handleSubmit}>
-      <label> Command:
-      <input type="text" value={this.state.nmapc.command}
-      name='Command'
-      onChange={this.handleChange} />
-      </label>
-      <label> Arg:
-      <input type="text" value={this.state.nmapc.args[0]}
-      name='Arg'
-      onChange={this.handleChange} />
-      </label>
+      <div className="NmapScanner">
+      <h1> Nmap Scanner </h1>
+      <form onSubmit={this.handleSubmit} >
+      <Container>
+      <TextInput label="Command" value={this.state.nmapc.command} handler={this.handleChange} />
+      <TextInput label="Arg" value={this.state.nmapc.args[0]} handler={this.handleChange} />
+      </Container>
       <input type="submit" value="Start scan" />
       </form>
 
@@ -115,6 +118,25 @@ class NmapScanner extends React.Component {
     );
   }
 
+}
+
+function TextInput (props) {
+  return (
+    <div className="TextInput">
+    <Row>
+    <Col sm={2}>
+    <label> {props.label}
+    </label>
+    </Col>
+    <Col sm={10}>
+    <input type="text"
+    value={props.value}
+    name={props.label}
+    onChange={props.handler} />
+    </Col>
+    </Row>
+    </div>
+  );
 }
 
 function NmapState (props) {

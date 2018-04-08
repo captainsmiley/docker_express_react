@@ -5,8 +5,8 @@ ehthumbs.db
 # Folder config file
 Desktop.ini
 app/node_modules
-app/build
-build
+#app/build
+#build
 node_modules
 
 # Recycle Bin used on file shares
@@ -72,5 +72,3 @@ Temporary Items
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-

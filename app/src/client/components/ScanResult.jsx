@@ -25,9 +25,11 @@ class ScanData extends React.Component {
   }
 
   componentDidMount() {
+
     fetch('/tgtest/scan_result/').
     then(response => response.json()).
     then(data => this.setState({scan_data: data}));
+    
   }
   render() {
     var ips = [];
@@ -49,15 +51,35 @@ class ScanData extends React.Component {
 
 function Port(props)  {
   return (//[{"port":80,"protocol":"tcp","service":"http","method":"table"}]
-    <div>
-    <p>
-    Port:{props.value.port+' '}
-    Protocol:{props.value.protocol+' '}
-    Service:{props.value.service+' '}
-    Method:{props.value.method}
-    </p>
+  <tr>
+  <td>{props.value.port}</td>
+  <td>{props.value.protocol}</td>
+  <td>{props.value.service}</td>
+  <td>{props.value.method}</td>
+  </tr>
+  )
+}
 
-    </div>
+function PortTabel(props) {
+  return (
+    <table>
+      <tbody>
+      <PortTabelHeadings />
+      {props.ports}
+      </tbody>
+    </table>
+  )
+}
+
+function PortTabelHeadings(props) {
+  return (
+    <tr>
+      <th>Port</th>
+      <th>Protocol</th>
+      <th>Service</th>
+      <th>Method</th>
+    </tr>
+
   )
 }
 
@@ -65,15 +87,18 @@ function OpenPorts(props) {
   const oports = props.open_ports;
   //console.log(oports);
   var listOPorts = [];
+  Array.isArray(oports) ?
   listOPorts = oports.map ((oport) =>
-  <Port key={oport.port.toString()} value={oport} />);
+  <Port key={oport.port.toString()} value={oport} />)
+  :
+  listOPorts = [];
+  //listOPorts.push(<p key={'isnull'}> No open ports </p>);
 
   return (
     <div>
     <p> Open Ports </p>
-    {listOPorts}
+    <PortTabel ports={listOPorts} />
     </div>
-
   );
 }
 

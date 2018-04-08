@@ -6,38 +6,14 @@ var path = require('path');
 var BUILD_DIR = path.resolve(__dirname, './build');
 var APP_DIR = path.resolve(__dirname, './src/client/');
 
-console.log('tgtest2');
 const config = {
-  mode: 'development',
-  context: __dirname,
-  entry: [
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-
-    APP_DIR + '/index.js'
-  ],
-  devtool: 'inline-source-map',
-  //unshift: "webpack-dev-server/client?http://localhost:3000/"
-  watch: false,
+  //context: __dirname,
+  //watch: false,
+  /*
   watchOptions: {
     poll: true
-  },
+  },*/
 
-  devServer: {
-    host: '0.0.0.0',
-    contentBase: './dist',
-    //hot: true,
-    watchOptions: {
-      poll: true
-    }
-  },
-  plugins: [
-    //new CleanWebpackPlugin(['dist']),
-    //  new HtmlWebpackPlugin({
-    //    title: 'Hot Module Replacement'
-    //  }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-  ],
   resolve: {
     modules: ['/dep/node_modules/','node_modules']
   },
