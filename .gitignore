@@ -8,6 +8,7 @@ app/node_modules
 #app/build
 #build
 node_modules
+arm_build
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/

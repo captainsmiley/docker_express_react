@@ -42,7 +42,7 @@ router.get('/test2/', function(req,res) {
   //console.log(' ');
   NetUtils.print_ifs();
 
-  res.json("send");
+  res.json("print ifs");
 
 })
 
