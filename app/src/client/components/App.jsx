@@ -21,6 +21,7 @@ class App extends React.Component {
     return (
       <div>
       <ConsoleWindow text="T: 24903940"/>
+      <NmapScanner/>
       </div>
 
     )

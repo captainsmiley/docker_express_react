@@ -31,7 +31,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/test/', function(req,res) {
-  Udp.start();
+  //Udp.start();
   console.log(' ');
 
   res.json("start");

@@ -5,22 +5,20 @@ var HOST = '127.0.0.1';
 var dgram = require('dgram');
 
 module.exports = class UdpServer {
-  constructor() {
+  constructor(callback) {
     this.id = 1;
-    this.server = dgram.createSocket('udp4');
     this.handleListening = this.handleListening.bind(this);
+    this.handleMsg = this.handleMsg.bind(this);
+    this.userCallback = callback;
+    this.server = null;
 
-    this.server.on('listening',this.handleListening);
-    this.server.on('message', function (message, remote) {
-      console.log(remote.address + ':' + remote.port +' - ' + message);
-      console.log('');
-      console.log('');
+  }
 
-    });
-    this.server.on('error', (err) => {
-      console.log(`server error:\n${err.stack}`);
-      server.close();
-    });
+  handleMsg(message, remote) {
+      //console.log(remote.address + ':' + remote.port +' - ' + message);
+      //console.log('');
+      //console.log('');
+      this.userCallback(message);
   }
 
 
@@ -46,9 +44,23 @@ module.exports = class UdpServer {
 
 
   start() {
+    this.server = dgram.createSocket('udp4');
+    this.server.on('listening',this.handleListening);
+    this.server.on('message', this.handleMsg);
+    this.server.on('error', (err) => {
+      console.log(`server error:\n${err.stack}`);
+      server.close();
+    });
 
+    //this.server.close();
     this.server.bind(PORT);
     //console.log(this.server.address());
+  }
+  stop() {
+    if(this.server) {
+      this.server.close();
+      this.server = null;
+    }
   }
 
 }

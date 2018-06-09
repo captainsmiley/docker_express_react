@@ -86,6 +86,11 @@ class NmapScanner extends React.Component {
 
   }
 
+  componentWillUnmount()
+  {
+    this.source.close();
+  }
+
   render() {
     const divStyle = {
       background: 'LightGray',
